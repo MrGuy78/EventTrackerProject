@@ -3,6 +3,7 @@ package com.skilldistillery.oldfriends.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,6 +69,21 @@ public class FriendController {
 			updatingFriend = null;
 		}
 		return updatingFriend;
+	}
+	
+	@DeleteMapping("oldFriends/{friendId}")
+	public void deleteFriend(@PathVariable("friendId") Integer friendId, HttpServletResponse resp) {
+		try {
+			if (friendServ.deleteById(friendId)) {
+				resp.setStatus(204);
+			}
+			else {
+				resp.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp.setStatus(400);
+		}
 	}
 
 }

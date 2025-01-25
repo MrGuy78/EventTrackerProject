@@ -46,8 +46,13 @@ public class FriendServiceImpl implements FriendService {
 
 	@Override
 	public boolean deleteById(int friendId) {
-		
-		return false;
+		boolean deleted = false;
+		Friend toBeDeleted = friendRepo.findById(friendId);
+		if (toBeDeleted != null) {
+			friendRepo.deleteById(friendId);
+			deleted = true;
+		}
+		return deleted;
 	}
 
 }
