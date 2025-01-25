@@ -8,27 +8,42 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+
 class FriendTest {
+	
+	private static EntityManagerFactory emf;
+	private EntityManager em;
+	private Friend friend;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		emf = Persistence.createEntityManagerFactory("JPAOldFriends");
 	}
 
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
+		emf.close();
 	}
 
 	@BeforeEach
 	void setUp() throws Exception {
+		em = emf.createEntityManager();
+		friend = em.find(Friend.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
+		em.close();
+		friend = null;
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void test_OldFriends_entity_mapping() {
+		assertNotNull(friend);
+		assertEquals("Kodiak", friend.getName());
 	}
 
 }
