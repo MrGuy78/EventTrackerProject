@@ -45,5 +45,11 @@ class FriendTest {
 		assertNotNull(friend);
 		assertEquals("Kodiak", friend.getName());
 	}
+	
+	@Test
+	void test_OldFriends_findById_mapping() {
+		assertNotNull(friend);
+		assertEquals(1, friend.getId());
+	}
 
 }

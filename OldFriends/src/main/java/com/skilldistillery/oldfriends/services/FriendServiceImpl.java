@@ -21,11 +21,10 @@ public class FriendServiceImpl implements FriendService {
 
 	@Override
 	public Friend findById(int friendId) {
-		
-		return null;
-	}
-
-	@Override
+		return friendRepo.findById(friendId);
+	} 
+ 
+	@Override 
 	public Friend create(Friend newFriend) {
 		
 		return null;
