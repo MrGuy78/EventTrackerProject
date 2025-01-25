@@ -31,9 +31,17 @@ public class FriendServiceImpl implements FriendService {
 	}
 
 	@Override
-	public Friend update(int friendId, Friend friend) {
-		
-		return null;
+	public Friend update(int friendId, Friend updatingFriend) {
+		Friend managedFriend = friendRepo.findById(friendId);
+		if (managedFriend != null) {
+			managedFriend.setName(updatingFriend.getName());
+			managedFriend.setType(updatingFriend.getType());
+			managedFriend.setDescription(updatingFriend.getDescription());
+			managedFriend.setArrivalDate(updatingFriend.getArrivalDate());
+			managedFriend.setDepartDate(updatingFriend.getDepartDate());
+			managedFriend.setImageUrl(updatingFriend.getImageUrl());
+		} 
+		return managedFriend;
 	}
 
 	@Override

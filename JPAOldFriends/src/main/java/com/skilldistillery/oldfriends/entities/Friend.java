@@ -92,7 +92,6 @@ public class Friend {
 		this.imageUrl = imageUrl;
 	}
 
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
