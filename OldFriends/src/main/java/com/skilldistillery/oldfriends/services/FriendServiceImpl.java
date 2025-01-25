@@ -26,8 +26,8 @@ public class FriendServiceImpl implements FriendService {
  
 	@Override 
 	public Friend create(Friend newFriend) {
-		
-		return null;
+		friendRepo.saveAndFlush(newFriend);
+		return newFriend;
 	}
 
 	@Override

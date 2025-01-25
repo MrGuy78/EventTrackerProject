@@ -8,6 +8,4 @@ public interface FriendRepository extends JpaRepository<Friend, Integer> {
 	
 	Friend findById(int friendId);
 	
-	
-
 }
