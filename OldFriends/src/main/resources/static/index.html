@@ -27,12 +27,53 @@
 			</thead>
 			<tbody id="friendListTbody"></tbody>
 		</table>
+		<button id="toggleForm">Add Friend</button>
 	</div>
 	<div id="friendDetailsDiv"></div>
-	<div id="addFriendDiv"></div>
 	
+	<hr><br>
+	<div id="addFriendDiv" >
+	<form name="addFriendForm">
+	
+	<h3>Add an Old Friend</h3>
+	
+		<div class="row">
+		<label for="name">Friend Name:</label>
+		<input type="text" name="name" class="form-label col-auto"><br><br>
+		</div>
+		
+		<div class="row">
+		<label for="type">Type of Friend:</label>
+		<input type="text" name="type" class="form-label col-auto"><br><br>
+		</div>
+
+		<div class="row">
+		<label for="description">Description:</label>
+		<textarea id="description" placeholder="Enter friend's description" 
+				  class="form-label col-auto" rows="4" cols="50">
+		</textarea><br><br>
+		</div>
+		
+		<div class="row">
+		<label for="arrivalYear">Arrival Year:</label>
+		<input type="number" name="arrivalYear" class="form-label col-auto"><br><br>
+		</div>
+		
+		<div class="row">
+		<label for="departYear">Departure Year:</label>
+		<input type="number" name="departYear" class="form-label col-auto"><br><br>
+		</div>
+
+		<div class="row">
+		<label for="imageUrl">Image URL:</label>
+		<input type="text" name="imageUrl" class="form-label col-auto"><br><br>
+		</div>
+
+		<button id="submitFriendButton" name="submitFriendButton" class= 'btn btn-primary'>Add Friend</button>
+	</form>
+	</div>
+		
 	</main>
-	
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
