@@ -10,10 +10,7 @@ function init() {
 	loadFriendList();
 	document.getElementById('toggleForm').addEventListener('click', toggleForm);
 	document.getElementById('addFriendDiv').style.display = 'none';
-
-	// TODO: event listeners for HTML form buttons, etc
-
-console.log(document);
+	
 document.addFriendForm.submitFriendButton.addEventListener('click', function(e){
 	e.preventDefault();
 	
@@ -28,6 +25,10 @@ document.addFriendForm.submitFriendButton.addEventListener('click', function(e){
 	
 	addFriend(friendObject);
 });
+
+
+// update stuff
+
 }
 
 function loadFriendList() {
@@ -81,11 +82,11 @@ function displayFriendList(friends) {
 		tr.appendChild(td);
 
 		td = document.createElement('td');
-		td.textContent = friend.arrivalDate;
+		td.textContent = friend.arrivalYear;
 		tr.appendChild(td);
 
 		td = document.createElement('td');
-		td.textContent = friend.departDate;
+		td.textContent = friend.departYear;
 		tr.appendChild(td);
 
 		td = document.createElement('td');
@@ -159,6 +160,14 @@ function displayFriend(friend) {
 		showList();
 	})
 	friendDiv.appendChild(backButton);
+	
+	let editButton = document.createElement('button');
+	editButton.textContent = 'Update friend';
+	editButton.classList.add('btn', 'btn-primary');
+	editButton.addEventListener('click', function(e) {
+		showUpdateForm(friend);
+	});
+	friendDiv.appendChild(editButton);
 
 	showDetails();
 }
@@ -188,7 +197,33 @@ function toggleForm() {
 	}
 }
 
+function showUpdateForm(updateFriend) {
+	let form = document.createElement('form');
+	form.name = "updateFriendForm";
+	
+	let hiddenInput = document.createElement('input');
+	hiddenInput.type = 'hidden';
+	hiddenInput.value = updateFriend.id;
+	hiddenInput.name = "id";
+	form.appendChild(hiddenInput);
+	
+	let nameInput = document.createElement('input');
+	nameInput.type = 'text';
+	nameInput.value = updateFriend.name;
+	nameInput.name = "name";
+	form.appendChild(nameInput);
+	
+	
+	
+	
+	
+	document.body.appendChild(form);
+	
+	
+}
+
 function addFriend(friendObject) {
+	console.log(friendObject);
 	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'api/oldFriends');
 	xhr.onreadystatechange = function() {
@@ -216,6 +251,7 @@ function updateFriend(friend) {
 			if (xhr.status === 201) {
 				let newData = JSON.parse(xhr.responseText);
 				displayFriend(newData);
+				document.body.removeChild(document.updateFriendForm);
 			}
 		} else {
 			console.log('PUT request failed.');

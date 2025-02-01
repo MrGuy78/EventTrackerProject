@@ -37,8 +37,8 @@ public class FriendServiceImpl implements FriendService {
 			managedFriend.setName(updatingFriend.getName());
 			managedFriend.setType(updatingFriend.getType());
 			managedFriend.setDescription(updatingFriend.getDescription());
-			managedFriend.setArrivalDate(updatingFriend.getArrivalDate());
-			managedFriend.setDepartDate(updatingFriend.getDepartDate());
+			managedFriend.setArrivalYear(updatingFriend.getArrivalYear());
+			managedFriend.setDepartYear(updatingFriend.getDepartYear());
 			managedFriend.setImageUrl(updatingFriend.getImageUrl());
 		} 
 		return managedFriend;
