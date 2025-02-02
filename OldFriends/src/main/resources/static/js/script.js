@@ -26,9 +26,6 @@ document.addFriendForm.submitFriendButton.addEventListener('click', function(e){
 	addFriend(friendObject);
 });
 
-
-// update stuff
-
 }
 
 function loadFriendList() {
@@ -197,29 +194,74 @@ function toggleForm() {
 	}
 }
 
-function showUpdateForm(updateFriend) {
+function showUpdateForm(updatedFriend) {
+	console.log(updateFriend);
 	let form = document.createElement('form');
 	form.name = "updateFriendForm";
 	
 	let hiddenInput = document.createElement('input');
 	hiddenInput.type = 'hidden';
-	hiddenInput.value = updateFriend.id;
+	hiddenInput.value = updatedFriend.id;
 	hiddenInput.name = "id";
 	form.appendChild(hiddenInput);
 	
 	let nameInput = document.createElement('input');
 	nameInput.type = 'text';
-	nameInput.value = updateFriend.name;
+	nameInput.value = updatedFriend.name;
 	nameInput.name = "name";
 	form.appendChild(nameInput);
 	
+	let typeInput = document.createElement('input');
+	typeInput.type = 'text';
+	typeInput.value = updatedFriend.type;
+	typeInput.name = 'type';
+	form.appendChild(typeInput);
 	
+	let descriptionInput = document.createElement('input');
+	descriptionInput.type = 'text';
+	descriptionInput.value = updatedFriend.description;
+	descriptionInput.name = 'description';
+	form.appendChild(descriptionInput);
 	
+	let arrivalYearInput = document.createElement('input');
+	arrivalYearInput.type = 'number';
+	arrivalYearInput.value = updatedFriend.arrivalYear;
+	arrivalYearInput.name = 'arrivalYear';
+	form.appendChild(arrivalYearInput);
 	
+	let departYearInput = document.createElement('input');
+	departYearInput.type = 'number';
+	departYearInput.value = updatedFriend.departYear;
+	departYearInput.name = 'departYear';
+	form.appendChild(departYearInput);
+	
+	let imageUrlInput = document.createElement('input');
+	imageUrlInput.type = 'text';
+	imageUrlInput.value = updatedFriend.imageUrl;
+	imageUrlInput.name = 'imageUrl';
+	form.appendChild(imageUrlInput);
+	
+	let submitButton = document.createElement('button');
+	submitButton.type = 'submit';
+	submitButton.textContent = 'Update Friend';
+	form.appendChild(submitButton);
 	
 	document.body.appendChild(form);
 	
+	form.addEventListener('submit', function(event) {
+	    event.preventDefault();
 	
+		let updatedFriend = {
+		    id: hiddenInput.value,
+		    name: nameInput.value,
+		    type: typeInput.value,
+		    description: descriptionInput.value,
+		    arrivalYear: arrivalYearInput.value,
+		    departYear: departYearInput.value,
+		    imageUrl: imageUrlInput.value
+		}
+		updateFriend(updatedFriend);
+});
 }
 
 function addFriend(friendObject) {
@@ -245,13 +287,15 @@ function addFriend(friendObject) {
 
 function updateFriend(friend) {
 	let xhr = new XMLHttpRequest();
-	xhr.open('PUT', 'api/oldFriends/' + friend.Id);
+	xhr.open('PUT', 'api/oldFriends/' + friend.id);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === xhr.DONE) {
-			if (xhr.status === 201) {
+			if (xhr.status === 200) {
+				console.log(xhr.responseText);
 				let newData = JSON.parse(xhr.responseText);
 				displayFriend(newData);
-				document.body.removeChild(document.updateFriendForm);
+				// document.body.removeChild(document.updateFriendForm);
+				document.body.removeChild(document.forms['updateFriendForm']);
 			}
 		} else {
 			console.log('PUT request failed.');
@@ -260,12 +304,9 @@ function updateFriend(friend) {
 	};
 	xhr.setRequestHeader('Content-type', 'application/json');
 	let friendObjectJson = JSON.stringify(friend);
+	console.log(friendObjectJson);
 	xhr.send(friendObjectJson);
 }
-
-
-
-
 
 
 

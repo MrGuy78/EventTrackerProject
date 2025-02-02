@@ -57,18 +57,18 @@ public class FriendController {
 	
 	@PutMapping("oldFriends/{friendId}")
 	public Friend updateFriend(@PathVariable("friendId") Integer friendId, 
-			@RequestBody Friend updatingFriend, HttpServletResponse resp) {
+			@RequestBody Friend updatedFriend, HttpServletResponse resp) {
 		try {
-			updatingFriend = friendServ.update(friendId, updatingFriend);
-			if (updatingFriend == null) {
+			updatedFriend = friendServ.update(friendId, updatedFriend);
+			if (updatedFriend == null) {
 				resp.setStatus(404);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.setStatus(400);
-			updatingFriend = null;
+			updatedFriend = null;
 		}
-		return updatingFriend;
+		return updatedFriend;
 	}
 	
 	@DeleteMapping("oldFriends/{friendId}")
