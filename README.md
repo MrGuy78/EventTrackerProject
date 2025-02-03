@@ -20,14 +20,17 @@ Spring Tool Suite/Eclipse
 Sublime
 Mamp
 Github
-
+REST APIs
+AJAX
 
 ## Lessons Learned
 * Dynamically build a table to show and manipulate data
 
-* Using Javascript, JSON to parse incoming/user data, route it through the service/impl/controller, then back to user/website again
+* Using Javascript/JSON to parse incoming/user data, route it through the service/impl/controller, then back to user/website again
 
-* 
+* To use event listeners as triggers for certain functions
+
+* To block certain forms, data, etc from showing until events
 
 ## TODOs 
 * Fix Update 
