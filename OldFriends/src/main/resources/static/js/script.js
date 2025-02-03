@@ -103,6 +103,7 @@ function displayFriendList(friends) {
 	}
 }
 
+// GET
 function getFriend(friendId) {
 	let xhr = new XMLHttpRequest();
 
@@ -194,50 +195,51 @@ function toggleForm() {
 	}
 }
 
-function showUpdateForm(updatedFriend) {
+// UPDATE
+function showUpdateForm(friend) {
 	console.log(updateFriend);
 	let form = document.createElement('form');
 	form.name = "updateFriendForm";
 	
 	let hiddenInput = document.createElement('input');
 	hiddenInput.type = 'hidden';
-	hiddenInput.value = updatedFriend.id;
+	hiddenInput.value = friend.id;
 	hiddenInput.name = "id";
 	form.appendChild(hiddenInput);
 	
 	let nameInput = document.createElement('input');
 	nameInput.type = 'text';
-	nameInput.value = updatedFriend.name;
+	nameInput.value = friend.name;
 	nameInput.name = "name";
 	form.appendChild(nameInput);
 	
 	let typeInput = document.createElement('input');
 	typeInput.type = 'text';
-	typeInput.value = updatedFriend.type;
+	typeInput.value = friend.type;
 	typeInput.name = 'type';
 	form.appendChild(typeInput);
 	
 	let descriptionInput = document.createElement('input');
 	descriptionInput.type = 'text';
-	descriptionInput.value = updatedFriend.description;
+	descriptionInput.value = friend.description;
 	descriptionInput.name = 'description';
 	form.appendChild(descriptionInput);
 	
 	let arrivalYearInput = document.createElement('input');
 	arrivalYearInput.type = 'number';
-	arrivalYearInput.value = updatedFriend.arrivalYear;
+	arrivalYearInput.value = friend.arrivalYear;
 	arrivalYearInput.name = 'arrivalYear';
 	form.appendChild(arrivalYearInput);
 	
 	let departYearInput = document.createElement('input');
 	departYearInput.type = 'number';
-	departYearInput.value = updatedFriend.departYear;
+	departYearInput.value = friend.departYear;
 	departYearInput.name = 'departYear';
 	form.appendChild(departYearInput);
 	
 	let imageUrlInput = document.createElement('input');
 	imageUrlInput.type = 'text';
-	imageUrlInput.value = updatedFriend.imageUrl;
+	imageUrlInput.value = friend.imageUrl;
 	imageUrlInput.name = 'imageUrl';
 	form.appendChild(imageUrlInput);
 	
@@ -251,7 +253,7 @@ function showUpdateForm(updatedFriend) {
 	form.addEventListener('submit', function(event) {
 	    event.preventDefault();
 	
-		let updatedFriend = {
+		let friend = {
 		    id: hiddenInput.value,
 		    name: nameInput.value,
 		    type: typeInput.value,
@@ -260,10 +262,26 @@ function showUpdateForm(updatedFriend) {
 		    departYear: departYearInput.value,
 		    imageUrl: imageUrlInput.value
 		}
-		updateFriend(updatedFriend);
+		updateFriend(friend);
 });
 }
 
+// DELETE
+document.addEventListener('DOMContentLoaded', function() {
+	document.getElementById('deleteFriendForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    let friendId = document.getElementById('friendId').value.trim();
+    if (friendId === '') {
+        displayMessage('Friend ID is required.');
+        return;
+    }
+	
+    deleteFriend(friendId);
+});
+});
+
+// ADD function
 function addFriend(friendObject) {
 	console.log(friendObject);
 	let xhr = new XMLHttpRequest();
@@ -285,6 +303,7 @@ function addFriend(friendObject) {
 	xhr.send(friendObjectJson);
 }
 
+// UPDATE function
 function updateFriend(friend) {
 	let xhr = new XMLHttpRequest();
 	xhr.open('PUT', 'api/oldFriends/' + friend.id);
@@ -295,6 +314,7 @@ function updateFriend(friend) {
 				let newData = JSON.parse(xhr.responseText);
 				displayFriend(newData);
 				// document.body.removeChild(document.updateFriendForm);
+				// console.log(document.forms['friend']);
 				document.body.removeChild(document.forms['updateFriendForm']);
 			}
 		} else {
@@ -306,6 +326,29 @@ function updateFriend(friend) {
 	let friendObjectJson = JSON.stringify(friend);
 	console.log(friendObjectJson);
 	xhr.send(friendObjectJson);
+}
+
+// DELETE function
+function deleteFriend(friendId) {
+	let xhr = new XMLHttpRequest();
+	xhr.open('DELETE', 'api/oldFriends/' + friendId);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === xhr.DONE) {
+			if (xhr.status === 200) {
+				let thisFriend = document.getElementById(friendId);
+				if (thisFriend) {
+					thisFriend.remove();
+				}
+				let data = JSON.parse(xhr.responseText);
+				displayFriend(data);
+			} else {
+				console.log('DELETE request failed.');
+				console.log(xhr.status + ': ' + xhr.responseText);
+			}
+		}
+	};
+	
+	xhr.send();
 }
 
 
