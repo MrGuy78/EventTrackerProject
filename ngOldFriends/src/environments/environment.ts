@@ -1,3 +1,3 @@
 export const environment = {
-  baseURl: '/OldFriends/'
+  baseUrl: '/OldFriends/'
 };
