@@ -1,5 +1,37 @@
 <h1>Old Friends (we miss you)</h1>
 
-<div *ngFor="let friend of oldFriends">
-  <p>{{friend.name}}</p>
+<div class="container" id="OldFriendsDex" *ngIf="!selected">
+  <table class= "table table-striped table-hover">
+    <thead>
+      <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>type</td>
+        <td>description</td>
+        <td>arrival date</td>
+        <td>depart date</td>
+        <td>imageUrl</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let friend of oldFriends" (click)="displayFriend(friend)">
+        <td>{{friend.id}}</td>
+        <td>{{friend.name}}</td>
+        <td>{{friend.type}}</td>
+        <td>{{friend.description}}</td>
+        <td>{{friend.arrivalDate}}</td>
+        <td>{{friend.departDate}}</td>
+        <td>{{friend.imageUrl}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container" *ngIf="selected">
+  <h4>{{selected.name}}</h4>
+  <h4>{{selected.type}}</h4>
+  <h5>{{selected.arrivalDate}}</h5>
+  <p>{{selected.imageUrl}}</p>
+
+  <button type="button" ngClass="btn btn-lg btn-primary" (click)="displayTable()">Back</button>
 </div>

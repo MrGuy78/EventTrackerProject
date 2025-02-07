@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
 
+  selected: OldFriends | null = null;
+
   oldFriends: OldFriends[] = [];
 
   constructor(
@@ -38,4 +40,12 @@ export class HomeComponent implements OnInit {
       } );
     }
 
+    displayFriend(oldFriend: OldFriends) {
+      console.log(oldFriend);
+      this.selected = oldFriend;
+    }
+
+    displayTable() {
+      this.selected = null;
+    }
 }
