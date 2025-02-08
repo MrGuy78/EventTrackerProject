@@ -11,17 +11,19 @@
         <td>arrival date</td>
         <td>depart date</td>
         <td>imageUrl</td>
+        <td>Delete Friend</td>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let friend of oldFriends" (click)="displayFriend(friend)">
-        <td>{{friend.id}}</td>
-        <td>{{friend.name}}</td>
-        <td>{{friend.type}}</td>
-        <td>{{friend.description}}</td>
-        <td>{{friend.arrivalDate}}</td>
-        <td>{{friend.departDate}}</td>
-        <td>{{friend.imageUrl}}</td>
+      <tr *ngFor="let friend of oldFriends"> 
+        <td (click)="displayFriend(friend)">{{friend.id}}</td>
+        <td (click)="displayFriend(friend)">{{friend.name}}</td>
+        <td (click)="displayFriend(friend)">{{friend.type}}</td>
+        <td (click)="displayFriend(friend)">{{friend.description}}</td>
+        <td (click)="displayFriend(friend)">{{friend.arrivalDate}}</td>
+        <td (click)="displayFriend(friend)">{{friend.departDate}}</td>
+        <td (click)="displayFriend(friend)">{{friend.imageUrl}}</td>
+        <td><button ngClass="btn btn=med btn-danger" (click)="deleteFriend(friend.id)">X</button></td>
       </tr>
     </tbody>
   </table>
@@ -43,10 +45,10 @@
   <h3>Create and Record your Memory</h3>
     Name of friend: <input type="text" name="name" [(ngModel)]="newFriend.name"><br>
     The Nature of your friend: <input type="text" name="type" [(ngModel)]="newFriend.type" ><br>
-    Talk about your friend: <textarea></textarea><br>
-    When did you become friends: <input type="number" name="year" ><br>
-    When did you lose your friend: <input type="number" name="year"><br>
-    Add a link/picture: <input type="text" name="imageUrl" ><br>
+    Talk about your friend: <textarea type="text" name="description" [(ngModel)]="newFriend.description"></textarea><br>
+    When did you become friends: <input type="number" name="arrivalDate" [(ngModel)]="newFriend.arrivalDate"><br>
+    When did you lose your friend: <input type="number" name="departDate" [(ngModel)]="newFriend.departDate"><br>
+    Add a link/picture: <input type="text" name="imageUrl" [(ngModel)]="newFriend.imageUrl"><br>
     <button ngClass="btn btn-md btn-primary" (click)="addFriend(newFriend)">Add your new old friend</button><br>
 
     <button ngClass="btn btn-md btn-primary" (click)="showCreateForm = !showCreateForm">Go Back</button><br>

@@ -48,4 +48,15 @@ export class OldFriendService {
       );
     }
 
+    destroy(friendId: number) : Observable<void> {
+      return this.http.delete<void>(`${this.url}/${friendId}`).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () => new Error('OldFriendsService.delete(): error deleting friend: ' + err)
+          );
+        })
+      );
+    }
+
 }

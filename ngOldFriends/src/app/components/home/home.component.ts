@@ -30,40 +30,40 @@ export class HomeComponent implements OnInit {
     this.loadOldFriends();
   }
 
-    loadOldFriends(): void {
-      this.oldFriendService.index().subscribe( {
-        next: (friendList) => {
-          this.oldFriends = friendList;
-        },
-        error: (someError) => {
-          console.error('HomeComponent.loadOldFriends: error');
-          console.error(someError);
+  loadOldFriends(): void {
+    this.oldFriendService.index().subscribe( {
+      next: (friendList) => {
+        this.oldFriends = friendList;
+      },
+      error: (someError) => {
+        console.error('HomeComponent.loadOldFriends: error');
+        console.error(someError);
+      },
+    } );
+  }
 
-        },
-      } );
-    }
+  displayFriend(oldFriend: OldFriends) {
+    console.log(oldFriend);
+    this.selected = oldFriend;
+  }
 
-    displayFriend(oldFriend: OldFriends) {
-      console.log(oldFriend);
-      this.selected = oldFriend;
-    }
+  displayTable() {
+    this.selected = null;
+  }
 
-    displayTable() {
-      this.selected = null;
-    }
-
-    addFriend(newFriend : OldFriends) {
-      this.oldFriendService.create(newFriend).subscribe({
-        next: (createdFriend) => {
-          this.newFriend = new OldFriends();
-          this.loadOldFriends();
-        },
-        error: (notTooFriendly) => {
-          console.error('HomeComponent.addFriend: Error creating friend.')
-          console.error(notTooFriendly);
-        }
-      })
-    };
+  addFriend(newFriend : OldFriends) {
+    this.oldFriendService.create(newFriend).subscribe({
+      next: (createdFriend) => {
+        this.newFriend = new OldFriends();
+        this.loadOldFriends();
+        this.showCreateForm = false;
+      },
+      error: (notTooFriendly) => {
+        console.error('HomeComponent.addFriend: Error creating friend.')
+        console.error(notTooFriendly);
+      }
+    })
+  };
 
     setEditOldFriend() {
       this.editOldFriend = Object.assign({}, this.selected);
@@ -83,5 +83,17 @@ export class HomeComponent implements OnInit {
           console.error(whatWentWrong);
         }
       });
+      }
+
+      deleteFriend(friendId: number) {
+        this.oldFriendService.destroy(friendId).subscribe({
+          next: () => {
+            this.loadOldFriends();
+          },
+          error: (fail) => {
+            console.error('HomeComponent.deleteFriend: error')
+            console.error(fail);
+          }
+        });
       }
 }
