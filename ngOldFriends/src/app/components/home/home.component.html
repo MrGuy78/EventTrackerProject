@@ -25,7 +25,7 @@
       </tr>
     </tbody>
   </table>
-  <button (click)="showCreateForm = !showCreateForm">Add Friend</button>
+  <button ngClass="btn btn-md btn-primary" (click)="showCreateForm = !showCreateForm">Add Friend</button>
 </div>
 
 <div class="container" *ngIf="selected">
@@ -34,7 +34,8 @@
   <h5>{{selected.arrivalDate}}</h5>
   <p>{{selected.imageUrl}}</p>
 
-  <button type="button" ngClass="btn btn-lg btn-primary" (click)="displayTable()">Back</button>
+  <button ngClass="btn btn-md btn-primary" (click)="displayTable()">Back</button>
+  <!-- <button ngClass="btn btn-md btn-primary" (click)="">Edit</button> -->
 </div>
 
 <div *ngIf="showCreateForm">
@@ -42,12 +43,12 @@
   <h3>Create and Record your Memory</h3>
     Name of friend: <input type="text" name="name" [(ngModel)]="newFriend.name"><br>
     The Nature of your friend: <input type="text" name="type" [(ngModel)]="newFriend.type" ><br>
-    Tell us about your friend: <textarea></textarea><br>
+    Talk about your friend: <textarea></textarea><br>
     When did you become friends: <input type="number" name="year" ><br>
     When did you lose your friend: <input type="number" name="year"><br>
     Add a link/picture: <input type="text" name="imageUrl" ><br>
-    <button (click)="addFriend(newFriend)">Add your new old friend</button>
+    <button ngClass="btn btn-md btn-primary" (click)="addFriend(newFriend)">Add your new old friend</button><br>
 
-    <button (click)="showCreateForm = !showCreateForm">Go Back</button>
+    <button ngClass="btn btn-md btn-primary" (click)="showCreateForm = !showCreateForm">Go Back</button>
 </form>
 </div>
