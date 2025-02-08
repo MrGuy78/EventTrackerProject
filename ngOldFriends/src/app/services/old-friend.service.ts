@@ -37,4 +37,15 @@ export class OldFriendService {
     )
   )}
 
+    update(friend: OldFriends) : Observable<OldFriends> {
+      return this.http.put<OldFriends>(this.url + '/' + friend.id, friend).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () => new Error('OldFriendService.index(): error updating friend ' + err)
+          );
+        })
+      );
+    }
+
 }

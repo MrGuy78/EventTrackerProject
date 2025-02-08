@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   selected: OldFriends | null = null;
   newFriend: OldFriends = new OldFriends();
   showCreateForm: boolean = false;
+  editOldFriend: OldFriends | null = null;
 
   oldFriends: OldFriends[] = [];
 
@@ -63,4 +64,24 @@ export class HomeComponent implements OnInit {
         }
       })
     };
+
+    setEditOldFriend() {
+      this.editOldFriend = Object.assign({}, this.selected);
+    }
+
+    updateFriend(friend: OldFriends, setSelected: boolean = true) {
+      this.oldFriendService.update(friend).subscribe({
+        next: (updatedFriend) => {
+        this.loadOldFriends();
+        if (setSelected) {
+          this.selected = updatedFriend;
+        }
+        this.editOldFriend = null;
+      },
+        error: (whatWentWrong) => {
+          console.error('HomeComponent.updateFriend: Error updating friend');
+          console.error(whatWentWrong);
+        }
+      });
+      }
 }

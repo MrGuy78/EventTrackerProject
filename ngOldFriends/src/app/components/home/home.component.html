@@ -35,7 +35,7 @@
   <p>{{selected.imageUrl}}</p>
 
   <button ngClass="btn btn-md btn-primary" (click)="displayTable()">Back</button>
-  <!-- <button ngClass="btn btn-md btn-primary" (click)="">Edit</button> -->
+  <button ngClass="btn btn-md btn-primary" (click)="setEditOldFriend()">Edit</button>
 </div>
 
 <div *ngIf="showCreateForm">
@@ -49,6 +49,26 @@
     Add a link/picture: <input type="text" name="imageUrl" ><br>
     <button ngClass="btn btn-md btn-primary" (click)="addFriend(newFriend)">Add your new old friend</button><br>
 
-    <button ngClass="btn btn-md btn-primary" (click)="showCreateForm = !showCreateForm">Go Back</button>
+    <button ngClass="btn btn-md btn-primary" (click)="showCreateForm = !showCreateForm">Go Back</button><br>
 </form>
+</div>
+
+<div *ngIf="editOldFriend">
+  <form>
+    <label for="name">Name</label>
+    <input type="text" name="name" [(ngModel)]="editOldFriend.name"><br>
+    <label for="type">Type of Friend</label>
+    <input type="text" name="type" [(ngModel)]="editOldFriend.type"><br>
+    <label for="description">Description</label>
+    <textarea for="description" name="description" [(ngModel)]="editOldFriend.description"></textarea><br>
+    <label for="arrivalDate">Arrival Year</label>
+    <input type="number" name="arrivalDate" [(ngModel)]="editOldFriend.arrivalDate"><br>
+    <label for="departDate">Departure Year</label>
+    <input type="number" name="departDate" [(ngModel)]="editOldFriend.departDate"><br>
+    <label for="imageUrl">Image URL</label>
+    <input type="text" name="imageUrl" [(ngModel)]="editOldFriend.imageUrl">
+
+    <button ngClass="btn btn-med btn-success" (click)="updateFriend(editOldFriend)">Save Friend</button>
+    <button ngClass="btn btn-med btn-danger" (click)="editOldFriend = null">Cancel</button>
+  </form>
 </div>
