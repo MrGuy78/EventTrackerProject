@@ -1,1 +1,11 @@
+.class1 {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-shadow: 2px 2px 2px #000000;
 
+}
+
+body {
+  background-color: bisque;
+}

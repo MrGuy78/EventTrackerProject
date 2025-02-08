@@ -1,5 +1,16 @@
-<h1>Old Friends (we miss you)</h1>
-
+<body>
+<div
+  class="class1 text-center bg-image d-flex justify-content-center align-items-start"
+  style="background-image: url(https://media.istockphoto.com/id/183815157/photo/teamwork.jpg?s=612x612&w=0&k=20&c=CHHe43PQncGHw-b3u2PL6VifPsSBO_Z3TWUcsjGSE3Q=);
+  height: 400px;
+  width: 650px;
+  ">
+  <div ngClass="mask gradient-custom">
+    <div ngClass="align-items-center h-100">
+      <h1 ngClass="text-center text-outline-black text-white mb-0">Old Friends (we miss you)</h1>
+    </div>
+  </div>
+</div>
 <div class="container" id="OldFriendsDex" *ngIf="!selected && !showCreateForm">
   <table class= "table table-striped table-hover">
     <thead>
@@ -11,11 +22,11 @@
         <td>arrival date</td>
         <td>depart date</td>
         <td>imageUrl</td>
-        <td>Delete Friend</td>
+        <td>Delete Entry</td>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let friend of oldFriends"> 
+      <tr *ngFor="let friend of oldFriends">
         <td (click)="displayFriend(friend)">{{friend.id}}</td>
         <td (click)="displayFriend(friend)">{{friend.name}}</td>
         <td (click)="displayFriend(friend)">{{friend.type}}</td>
@@ -74,3 +85,4 @@
     <button ngClass="btn btn-med btn-danger" (click)="editOldFriend = null">Cancel</button>
   </form>
 </div>
+</body>
