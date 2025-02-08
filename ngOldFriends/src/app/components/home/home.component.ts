@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 export class HomeComponent implements OnInit {
 
   selected: OldFriends | null = null;
+  newFriend: OldFriends = new OldFriends();
+  showCreateForm: boolean = false;
 
   oldFriends: OldFriends[] = [];
 
@@ -48,4 +50,17 @@ export class HomeComponent implements OnInit {
     displayTable() {
       this.selected = null;
     }
+
+    addFriend(newFriend : OldFriends) {
+      this.oldFriendService.create(newFriend).subscribe({
+        next: (createdFriend) => {
+          this.newFriend = new OldFriends();
+          this.loadOldFriends();
+        },
+        error: (notTooFriendly) => {
+          console.error('HomeComponent.addFriend: Error creating friend.')
+          console.error(notTooFriendly);
+        }
+      })
+    };
 }

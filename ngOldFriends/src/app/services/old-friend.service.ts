@@ -20,11 +20,21 @@ export class OldFriendService {
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error('PokemonService.index(): error retrieving pokemon: ' + err)
+          () => new Error('OldFriendService.index(): error retrieving friend: ' + err)
         );
       })
     );
   }
 
+  create(newFriend: OldFriends) : Observable <OldFriends> {
+    return this.http.post<OldFriends>(this.url, newFriend).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('OldFriendService.index(): error creating friend' + err)
+        )
+      }
+    )
+  )}
 
 }

@@ -1,6 +1,6 @@
 <h1>Old Friends (we miss you)</h1>
 
-<div class="container" id="OldFriendsDex" *ngIf="!selected">
+<div class="container" id="OldFriendsDex" *ngIf="!selected && !showCreateForm">
   <table class= "table table-striped table-hover">
     <thead>
       <tr>
@@ -25,6 +25,7 @@
       </tr>
     </tbody>
   </table>
+  <button (click)="showCreateForm = !showCreateForm">Add Friend</button>
 </div>
 
 <div class="container" *ngIf="selected">
@@ -34,4 +35,19 @@
   <p>{{selected.imageUrl}}</p>
 
   <button type="button" ngClass="btn btn-lg btn-primary" (click)="displayTable()">Back</button>
+</div>
+
+<div *ngIf="showCreateForm">
+  <form>
+  <h3>Create and Record your Memory</h3>
+    Name of friend: <input type="text" name="name" [(ngModel)]="newFriend.name"><br>
+    The Nature of your friend: <input type="text" name="type" [(ngModel)]="newFriend.type" ><br>
+    Tell us about your friend: <textarea></textarea><br>
+    When did you become friends: <input type="number" name="year" ><br>
+    When did you lose your friend: <input type="number" name="year"><br>
+    Add a link/picture: <input type="text" name="imageUrl" ><br>
+    <button (click)="addFriend(newFriend)">Add your new old friend</button>
+
+    <button (click)="showCreateForm = !showCreateForm">Go Back</button>
+</form>
 </div>
