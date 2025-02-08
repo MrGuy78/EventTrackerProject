@@ -24,10 +24,10 @@ public class Friend {
 	private String description;
 	
 	@Column(name = "arrival_date")
-	private int arrivalYear;
+	private int arrivalDate;
 	
 	@Column(name = "depart_date")
-	private int departYear;
+	private int departDate;
 	
 	@Column(name = "image_url")
 	private String imageUrl;
@@ -68,20 +68,20 @@ public class Friend {
 		this.description = description;
 	}
 
-	public int getArrivalYear() {
-		return arrivalYear;
+	public int getArrivalDate() {
+		return arrivalDate;
 	}
 
-	public void setArrivalYear(int arrivalDate) {
-		this.arrivalYear = arrivalDate;
+	public void setArrivalDate(int arrivalDate) {
+		this.arrivalDate = arrivalDate;
 	}
 
-	public int getDepartYear() {
-		return departYear;
+	public int getDepartDate() {
+		return departDate;
 	}
 
-	public void setDepartYear(int departDate) {
-		this.departYear = departDate;
+	public void setDepartDate(int departDate) {
+		this.departDate = departDate;
 	}
 
 	public String getImageUrl() {
@@ -112,7 +112,7 @@ public class Friend {
 	@Override
 	public String toString() {
 		return "Friend [id=" + id + ", name=" + name + ", type=" + type + ", description=" + description
-				+ ", arrivalDate=" + arrivalYear + ", departDate=" + departYear + ", imageUrl=" + imageUrl + "]";
+				+ ", arrivalDate=" + arrivalDate + ", departDate=" + departDate + ", imageUrl=" + imageUrl + "]";
 	}
 	
 }
