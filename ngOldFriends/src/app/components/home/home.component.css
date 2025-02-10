@@ -1,8 +1,9 @@
-.hero-image {
+/* .hero-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5),
                                     rgba(0, 0, 0, 0.5)),
                                       url("https://dogster.com/wp-content/uploads/2024/03/chocolate-black-and-yellow-labradors_-Rosa-Jay_Shutterstock.jpg");
-  background-position: center;
+  height: 50%;
+  background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -15,7 +16,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-}
+} */
 
 body {
   margin: 0;
