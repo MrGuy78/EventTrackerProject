@@ -1,6 +1,9 @@
 <body>
-  <h1 ngClass="text-center text-outline-black text-white mb-0">Old Friends (we miss you)</h1>
-
+  <div class="hero-image">
+    <div class="hero-text">
+      <h1 ngClass="text-center text-outline-black text-white mb-0">Old Friends (we miss you)</h1>
+    </div>
+  </div><br>
 <div class="table-container" id="OldFriendsDex" *ngIf="!selected && !showCreateForm">
   <table>
     <thead>
@@ -29,7 +32,7 @@
     </tbody>
   </table>
   <button ngClass="btn btn-md btn-primary" (click)="showCreateForm = !showCreateForm">Add Friend</button>
-</div>
+</div><br>
 
 <div class="container" *ngIf="selected">
   <h4>{{selected.name}}</h4>
