@@ -1,11 +1,38 @@
-.class1 {
+/* .class1 {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   text-shadow: 2px 2px 2px #000000;
 
-}
+} */
 
 body {
-  background-color: bisque;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-image: url('https://media.istockphoto.com/id/183815157/photo/teamwork.jpg?s=612x612&w=0&k=20&c=CHHe43PQncGHw-b3u2PL6VifPsSBO_Z3TWUcsjGSE3Q=');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.table-container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+}
+
+table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
 }
